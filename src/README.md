@@ -1,313 +1,692 @@
- import React from 'react'
-const  Uploadcomp = () =>{
-     return (
-  <>
-   <div className="card text-center" id='card1' >
-  <div className="card-header">
-    Upload Your File
-  </div>
-  <div className="card-body1">
-  <div className='uploadmain'>
- <div className='upload'>
-      <button type='button' className='btn-upload'>
-      <i className="bi bi-cloud-arrow-up"></i> Upload File 
-      <input 
-      type='file' id='upload-file' onChange={Handlefile}  />
-      </button>
-    </div>
-    <p id='txt' className='preview-name'></p>
-    <p id='info'></p>
-    
-    <div className='upload2'>
-    <i className="bi-bi-cloud-arrow-up2" style={{height:100}}></i>
-    </div>
-    <div className='container'>
-      <div className='col-12 col-lg-6'>
-    <div className='noofpages'>
-   <b>Number of pages:</b><input type={'number'} className='nopagesbox' ></input>
-   </div>
-   <div className='noofcopies'>
-   <b>Number of copies:</b><input type={'number'} className='nocopiesbox'></input>
-   </div> 
-      </div>
-</div>
-</div>
-</div>
-</div>
-  </>      
-  )
-}
 
 
-export default Uploadcomp
-const   Handlefile = ()=>{
-    let x = document.getElementById('upload-file');
-    let txt='';
-    let file = x.files[0];
-    if('name' in file){
-      txt += 'fileName : ' + file.name;
-    }
-    if('size' in file){
-      let kb = Math.round(file.size/1000);
-      let mb = Math.round(kb/1000);
-     if(kb<=1000){
-      txt += ' |  Size :' + kb +'KB';
-     }
-     else if (mb<=1000){
-      txt +='  |  Size :' + mb +'MB';
-     }
-    }
-    document.getElementById('txt').innerHTML=txt;
-   }
-   const   Handlefile = ()=>{
-    let x = document.getElementById('upload-file');
-    let txt='';
-    let file = x.files[0];
-    if('name' in file){
-      txt += 'fileName : ' + file.name;
-    }
-    if('size' in file){
-      let kb = Math.round(file.size/1000);
-      let mb = Math.round(kb/1000);
-     if(kb<=1000){
-      txt += ' |  Size :' + kb +'KB';
-     }
-     else if (mb<=1000){
-      txt +='  |  Size :' + mb +'MB';
-     }
-    }
-    document.getElementById('txt').innerHTML=txt;
-   }
-   let pdf = document.getElementById('file');
-pdf.onchange= function(event){
-  let file = event.target.files[0];
-  console.log(file)
-  let filereader = new FileReader()
-  filereader.onload=function(){
-    let typedarray = new Uint8Array(this.result)
-    const task = pdfjsLib.getdocument(typedarray)
-    task.promise.then((pdf) =>{
-      console.log(pdf.numPages)
-      document.getElementById('info').innerHTML='the number of pages ' + pdf.numPages;
-    }
-    )
-  }
-}
- let pdf = document.getElementById('file');
-  console.log(pdf);
-  pdf.onChange =  function handlechange(event){
-    let file= pdf.files[0];
-  console.log(event.target.value)
-  let filereader = new FileReader()
-  filereader.onload=function(){
-    let typedarray = new Uint8Array(this.result)
-    const task = pdfjsLib.getDocument(typedarray)
-    task.promise.then((pdf) =>{
-      console.log(pdf.numPages)
-      document.getElementById('info').innerHTML='the number of pages ' + pdf.numPages;
-    })
-  }
-    filereader.readAsArrayBuffer(file)
-  
 
-  }
-  import pdfjsLib from "pdfjs-dist/build/pdf"
-  const pdfjsLib = require("pdfjs-dist/legacy/build/pdf.js");
-   const pdffunc = () =>{
-  let pdf = document.getElementById('file');
-  let info = 'the number of pages'
-  let files = pdf.files[0];
-  console.log(files);
- 
- let filereader = new FileReader()
- filereader.onload=function(){
-  let typedarray = new Uint8Array(this.result)
- 
-    const task = pdfjsLib.getDocument(typedarray)
-    task.promise.then(function(pdf){
-      console.log(pdf.numPages)
-      document.getElementById('info').innerHTML=info + pdf.numPages;
-    })
-  
-    filereader.readAsArrayBuffer(files)
-  }
- 
+export default  Uploadcomp
+{props.selectedValue === "black and white" && props.selectedValue2=== "front side only" ? 10 : props.selectedValue === "black and white" && props.selectedValue2=== "both sides" ? 10 : props.selectedValue === "color" && props.selectedValue2=== "front side only" ? 15 : props.selectedValue === "color" && props.selectedValue2=== "both sides" ? 20:20}
+ .nav-link{
+  color:aliceblue;
  }
- import { PDFWorker } from 'pdfjs-dist';
- return (
-  <>
-   <div className="card text-center" id='card1' >
-  <div className="card-header">
-    Upload Your File
-  </div>
-  <div className="card-body1">
-  <div className='uploadmain'>
- <div className='upload'>
-      <button type='button' className='btn-upload'>
-      <i className="bi bi-cloud-arrow-up"></i> Upload file
-       <input type="file" id='file' name='file' onChange={handleFileChange} />
-    </button>
-    </div>
-  
-   
-    <div className='upload2'>
-    <i className="bi-bi-cloud-arrow-up2" style={{height:100}}></i>
-    </div>
-    <div className='container'>
-      <div className='col-12 col-lg-6'>
-    <div className='noofpages'>
-   <b>Number of pages:</b><input type={'number'} className='nopagesbox'></input>
-   </div>
-   <div className='noofcopies'>
-   <b>Number of copies:</b><input type={'number'} className='nocopiesbox'></input>
-   </div> 
-      </div>
-</div>
-</div>
-</div>
-</div>
-  </>      
-  )
+
+                  .btn-upload{
+                   position: relative;
+                   padding: 11px 16px;
+                   font-size: 15px;
+                   line-height: 1.5;
+                   border-radius: 10px;
+                   background-color:black;
+                   color:white;
+                   border: 0;
+                   overflow: hidden;
+                   transition: 2s;
+               
+                  }
+                  .btn-upload input[type='file']{
+                   cursor:pointer;
+                   position: absolute;
+                   left: 0%;
+                   top: 0%;
+                 transform: scale(5);
+                 opacity: 0;
+               
+                  }
+                  input{
+                    text-align: center;   
+                }
+                     @media (min-width:1200px){
+                       .btn-upload{
+                         position: absolute;
+                         right: 650px;
+                         top: 60px;
+                       }
+                       #txt{
+                        position: relative;
+                     top: 70px;
+
+                      } 
+                       .noofpagesbox{
+                        width: 100px;
+                        border-style: solid;
+                        border-color: black;
+                        border-radius: 10px;
+                        margin-left: 15px;
+                        position: relative;
+                        left: 500px;
+                        top: 45px;
+        
+                       }
+                       .numcopies{
+                        position: relative;
+                        left: 500px;
+                        
+                       }
+                       .nocopiesbox{
+                               border-color:black;
+                               border-radius: 10px;
+                           margin-left: 15px;
+                               width: 100px;
+                              position: relative;
+                             left: 500px;
+                             }
+                             .numpages{
+                              position: relative;
+                              left: 110px;
+                              top: 70px;
+                             }
+                            
+                       .form-check1{
+                         position: absolute;
+                         right: 750px;
+                         top: 50px;
+                         margin-top: 30px;
+                       }
+                       .form-check2{
+                         position: absolute;
+                         right: 600px;
+                         top: 50px;
+                         margin-top: 30px;
+                       }
+                       .form-check3{
+                         position: absolute;
+                         right: 755px;
+                         top: 100px;
+                         margin-top: 30px;
+                       }
+                       .form-check4{
+                         position: absolute;
+                         right:565px;
+                         top: 100px;
+                         margin-top: 30px;
+                       }
+                       #showpricebtn{
+                        position: absolute;
+                        right: 650px;
+                       bottom: 170px;
+                      }
+                      table {
+                       position: relative;
+                      left: 550px;
+                      top: 70px;
+                      margin: 20px;
+                      }
+                      #checkoutbtn{
+                        position: absolute;
+                        right: 660px;
+                        bottom: 10px;
+                      }
+                      #footer,#contact-section{
+                        width: 80vw;
+                        padding: 1rem;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        color: black;
+                        border-radius: 0.5rem;
+                        position: relative;
+                        margin-top: 30px;
+                       margin-left: 140px;
+                      }
+                    
+                    }
+                    .noofpagesbox{
+                      width: 100px;
+                      border-style: solid;
+                      border-color: black;
+                      border-radius: 10px;
+                      margin-left: 15px;
+                    }
+                    .nocopiesbox{
+                      border-color:black;
+                      border-radius: 10px;
+                  margin-left: 15px;
+                      width: 100px;
+                    }
+                     
+                       @media (max-width:1199.98px){
+                         .btn-upload{
+                           position: absolute;
+                           right: 100px;
+                           top: 90px;
+                          
+                         }
+                         #txt{
+                          position: relative;
+                       top: 15px;
+                        } 
+                         .numpages{
+                          position:absolute;
+                      right: 150px;
+                          top: 160px;
+                         }
+                         .noofpagesbox{
+                          position: absolute;
+                         right:30px;
+                          top: 160px;
+          
+                         }
+                         .numcopies{
+                          position: absolute;
+                          right: 150px;
+                          top: 210px;
+                         }
+                         .nocopiesbox{
+                                position: absolute;
+                               right: 30px;
+                               top: 210px;
+                               }
+                         .form-check1{
+                           position: absolute;
+                           right: 150px;
+                           top: 50px;
+                           margin-top: 20px;
+                          
+                         }
+                         .form-check2{
+                           position: absolute;
+                           right: 50px;
+                           top: 50px;
+                           margin-top: 20px;
+                         }
+                         .form-check3{
+                           position: absolute;
+                           right: 155px;
+                           top: 100px;
+                           margin-top: 30px;
+                         }
+                         .form-check4{
+                           position: absolute;
+                           right:15px;
+                           top: 100px;
+                         margin-top: 30px;
+                         }
+                         #showpricebtn{
+                          position: absolute;
+                          right: 100px;
+                         bottom: 150px;
+                        }
+                        table {
+                          position: relative;
+                         left: 1px;
+                         top: 80px;
+                         margin: 20px;
+                         }
+                         .card-body3{
+                          height: 200px;
+                         }
+                      
+                        #checkoutbtn{
+                          position: absolute;
+                          right: 110px;
+                         top: 270px;
+                        }
+                        #footer,#contact-section{
+                          width: 70vw;
+                          padding: 1rem;
+                          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                          background-color: white;
+                          color: black;
+                          border-radius: 0.5rem;
+                          position: relative;
+                          margin-top: 30px;
+                          left: 60px;
+                        }
+                       }
+                      table, th, td {
+                        border:1px solid black;
+                       
+                      }
+                      
+                      tr:nth-child(even) {
+                      background-color: #D6EEEE;
+                      }
+                      @media only screen and (max-width: 600px) {
+                        table {
+                          font-size: 0.9rem;
+                        }
+                        #card3 {
+                          padding: 1rem;
+                        }
+                      }
+                      
+                      
+                       .card-body1{
+                         height: 240px;
+                         background-color: white;
+                         color: black;
+                         border-radius: 10px;
+                        
+                        
+                       }
+                         .card-body2{
+                           height: 150px;
+                           background-color: white;
+                           color:black;
+                           border-radius: 10px;
+                         }
+                         .card-body3{
+                          height: 230px;
+                          background-color: white;
+                          color: black;
+                          border-radius: 10px;
+                         }
+                         #card1,#card2,#card3{
+                         
+                           margin-top: 10px;
+                           border-radius: 10px;
+                           margin-left: 20px;
+                           margin-right: 20px;
+                           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                           
+                         }
+                         .form-check-input{
+                           margin-right: 10px;
+                         }
+                        
+
+                         .work-container {
+                          width: 80vw;
+                          padding: 1.5rem;
+                          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                          margin-top: 5rem;
+                          background-color: #fff;
+                          border-radius: 0.5rem;
+                        }
+                        
+                        .work-container .main-heading {
+                          font-size: 3rem;
+                          font-weight: bolder;
+                          word-spacing: 0.11rem;
+                          padding-bottom: 20px;
+                          
+                        }
+                        
+                        .work-container .sub-heading {
+                          font-size: 2rem;
+                          font-weight: normal;
+                        }
+                        .fontawesome-style {
+                          font-size: 2rem;
+                          display: grid;
+                          place-items: center;
+                          text-align: center;
+                          margin: 0.5rem auto; 
+                        
+                        }
+                        .work-container-subdiv .main-hero-para {
+                          width: 100%;
+                        }
+                       
+                       .connect,.contact{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                       
+                       }
+                       .socialicons{
+                        font-size: 20px;
+                       color: black;
+                        border-radius: 50px;
+                        margin: 20px;
+                        height: 50vw;
+                        line-height: 100px;
+                       
+                       }
+                     .copyright{
+                      text-align: center;
+                      margin-top: 10px;
+                      margin-bottom: -70px;
+                      
+                     }
+                     .connectflex,.contactflex{
+                      display: inline-block;
+                      margin-right:25vw;
+                     
+                     }           
+                     .bi-bi-cloud-arrow-up-fill{
+  width: 50px;
+  height: 80px; 
 }
-
-
-
-export default Uploadcomp
-import React from 'react'
-import  pdfjsLib from "pdfjs-dist";
-
-const Uploadcomp = () => {
-  const pdffunc = () =>{
-    let pdf = document.getElementById('file');
-    let info = 'the number of pages'
-    let files = pdf.files[0];
-    console.log(files);
-  
-   let filereader = new FileReader()
-   filereader.onload=function(){
-    let typedarray = new Uint8Array(this.result)
-   
-      const task = pdfjsLib.getDocument(typedarray)
-      task.promise.then(function(pdf){
-        console.log(pdf.numPages)
-        document.getElementById('info').innerHTML=info + pdf.numPages;
-      })
-    
-      filereader.readAsArrayBuffer(files)
-    }
+.bi-bi-arrow-down{
+  width: 30px;
+  height: 50px;
+}
+.bi-bi-record2{
+  width: 30px;
+  height: 50px;
+}
+.bi-bi-arrow-down2{
+  width: 30px;
+  height: 50px;
+}
+.bi-bi-currency-rupee{
+  width: 30px;
+  height: 50px;
+}
+.carousel-control-next{
+  margin-right: 0px;
   }
-    return (
-    <div>
- 
-  <>
-   <div className="card text-center" id='card1' >
-  <div className="card-header">
-    Upload Your File
-  </div>
-  <div className="card-body1">
-  <div className='uploadmain'>
- <div className='upload'>
-      <button type='button' className='btn-upload'>
-      <i className="bi bi-cloud-arrow-up"></i> Upload file
-   <input id ='file' type='file' onChange={pdffunc}></input>   
-    </button>
-   
-    </div>
-  
-   
-    <div className='upload2'>
-    <i className="bi-bi-cloud-arrow-up2" style={{height:100}}></i>
-    </div>
-    <div className='container'>
-      <div className='col-12 col-lg-6'>
-    <div className='noofpages'>
-   <b>Number of pages:</b><input type={'number'} className='nopagesbox'></input>
-   </div>
-   <div className='noofcopies'>
-   <b>Number of copies:</b><input type={'number'} className='nocopiesbox'></input>
-   </div> 
-      </div>
-</div>
-</div>
-</div>
-</div>
-
-  </>     
-  </div> 
-  )
-
-}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.2.146/pdf.min.js" integrity="sha512-hA0/Bv8+ywjnycIbT0xuCWB1sRgOzPmksIv4Qfvqv0DOKP02jSor8oHuIKpweUCsxiWGIl+QaV0E82mPQ7/gyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-
-
-
-
-export default Uploadcomp
-import React from 'react'
-import  pdfjs from 'pdfjs-dist';
-
-const Uploadcomp = () => {
-  const pdffunc = () =>{
-    let pdf = document.getElementById('file');
-    let files = pdf.files[0];
-    console.log(files);
-  
-   let filereader = new FileReader()
-   filereader.onload=function(){
-    let typedarray = new Uint8Array(this.result)
-    console.log(typedarray)
-    pdfjs.getDocument(typedarray).task.promise.then(function(pdf){
-        console.log(pdf.numPages)
-         console.log("bharath")
-        document.getElementById('info').innerHTML=`Number of pages: ${pdf.numPages}`;
-      })
+  .carousel-item {
+    height: 300px;
     }
-    filereader.readAsArrayBuffer(files)
+    @media (max-width: 767px) {
+      .responsive-font-example{
+        font-size: 50px;
+          }
+          .tagline{
+           font-size:15px;
+          }
+      .bi-bi-cloud-arrow-up-fill{
+        position: absolute;
+        left: 170px;
+        top: 10px;  
+      }
+  .bi-bi-arrow-down{
+    position: absolute;
+    left: 180px;
+    top: 60px;
   }
-    return (
-    <div> 
-  <>
-   <div className="card text-center" id='card1' >
-  <div className="card-header">
-    Upload Your File
-  </div>
-  <div className="card-body1">
-  <div className='uploadmain'>
- <div className='upload'>
-      <button type='button' className='btn-upload'>
-      <i className="bi bi-cloud-arrow-up"></i> Upload file
-   <input id ='file' type='file' onChange={pdffunc}></input>   
-    </button>
-    </div>
-    <div className='upload2'>
-    <i className="bi-bi-cloud-arrow-up2" style={{height:100}}></i>
-    </div>
-    <div className='container'>
-      <div className='col-12 col-lg-6'>
-    <div className='noofpages'>
-   <b> <span id="info"></span> </b>
-   </div>
-   <div className='noofcopies'>
-   <b>Number of copies:</b><input type={'number'} className='nocopiesbox'></input>
-   </div> 
-      </div>
-</div>
-</div>
-</div>
-</div>
-
-  </>     
-  </div> 
-  )
-
+  .bi-bi-record2{
+    position: absolute;
+    left: 180px;
+    top: 100px;
+  }
+  .bi-bi-arrow-down2{
+    position: absolute;
+    left: 180px;
+    top: 140px;
+  }
+  .bi-bi-currency-rupee{
+    position: absolute;
+    left: 180px;
+    top: 190px;
+  }
+  .carousel3{
+    position: absolute;
+    left: 80px;
+    top: 140px;
+  }
 }
-  if(pdfjs){
-        pdfjs.getDocument(typedarray).task.promise.then(function(pdf){
-            console.log(pdf.numPages)
-            setNumPages(pdf.numPages);
-        })
-        }
+@media (min-width: 768px) and (max-width: 991px) {
+  .responsive-font-example{
+  font-size: 50px;
+   }
+  .tagline{
+  font-size:15px;
+  }
+  .bi-bi-cloud-arrow-up-fill{
+    position: absolute;
+    left: 360px;
+    top: 10px;  
+  }
+.bi-bi-arrow-down{
+position: absolute;
+left: 370px;
+top: 70px;
+}
+.bi-bi-record2{
+position: absolute;
+left: 370px;
+top: 120px;
+}
+.bi-bi-arrow-down2{
+position: absolute;
+left: 370px;
+top: 170px;
+}
+.bi-bi-currency-rupee{
+position: absolute;
+left: 370px;
+top: 220px;
+}
+.carousel3{
+position: absolute;
+left: 280px;
+top: 140px;
+}
+ }
+ @media (min-width: 992px) {
+  .bi-bi-cloud-arrow-up-fill{
+    position: absolute;
+    left: 730px;
+    top: 10px;  
+  }
+.bi-bi-arrow-down{
+position: absolute;
+left: 740px;
+top: 70px;
+}
+.bi-bi-record2{
+position: absolute;
+left: 740px;
+top: 120px;
+}
+.bi-bi-arrow-down2{
+position: absolute;
+left: 740px;
+top: 170px;
+}
+.bi-bi-currency-rupee{
+position: absolute;
+left: 740px;
+top: 220px;
+}
+.carousel3{
+position: absolute;
+left: 450px;
+top: 100px;
+font-size: 3rem;
+}
+ }          
+ @media (min-width: 768px)  {
+  .responsive-font-example{
+  font-size: 50px;
+   }
+  .tagline{
+  font-size:15px;
+  }
+  .bi-bi-cloud-arrow-up-fill{
+    position: absolute;
+    left: 440px;
+    top: 10px;  
+  }
+.bi-bi-arrow-down{
+position: absolute;
+left: 450px;
+top: 70px;
+}
+.bi-bi-record2{
+position: absolute;
+left: 450px;
+top: 120px;
+}
+.bi-bi-arrow-down2{
+position: absolute;
+left: 450px;
+top: 170px;
+}
+.bi-bi-currency-rupee{
+position: absolute;
+left: 450px;
+top: 220px;
+}
+.carousel3{
+position: absolute;
+left: 280px;
+top: 140px;
+}
+ }
+ @media (min-width: 992px) {
+  .bi-bi-cloud-arrow-up-fill{
+    position: absolute;
+    left: 730px;
+    top: 10px;  
+  }
+.bi-bi-arrow-down{
+position: absolute;
+left: 740px;
+top: 70px;
+}
+.bi-bi-record2{
+position: absolute;
+left: 740px;
+top: 120px;
+}
+.bi-bi-arrow-down2{
+position: absolute;
+left: 740px;
+top: 170px;
+}
+.bi-bi-currency-rupee{
+position: absolute;
+left: 740px;
+top: 220px;
+}
+.carousel3{
+position: absolute;
+left: 450px;
+top: 100px;
+font-size: 3rem;
+}
+ }          
+ .carousel-control-next{
+  margin-right: 0px;
+  }
+  .carousel-item {
+    height: 300px;
+    }
+.carouselmain {
+  width: 100%;
+  height: 300px;
+}
 
 
+.carousel-inner {
+  height: 100px;
+}
 
-export default Uploadcomp
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.2.146/pdf.min.js" integrity="sha512-hA0/Bv8+ywjnycIbT0xuCWB1sRgOzPmksIv4Qfvqv0DOKP02jSor8oHuIKpweUCsxiWGIl+QaV0E82mPQ7/gyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+.responsive-font-example {
+  font-size: 2rem;
+}
+
+.tagline {
+  font-size: 1.5rem;
+}
+
+/* Media query for screens smaller than 768px */
+@media (max-width: 768px) {
+  .carousel-inner {
+      height: 200px;
+  }
+
+  .responsive-font-example {
+      font-size: 1.5rem;
+      margin: 100px;
+  }
+
+  .tagline {
+      font-size: 1.2rem;
+      margin: 100px;
+  }
+}
+.carousel-control-prev {
+  position: absolute;
+  top: 150px;
+}
+.carousel-control-next{
+  position:absolute;
+  top: 150px;
+}
+
+/* Media query for screens smaller than 480px */
+@media (max-width: 480px) {
+  .carousel-inner {
+      height: 150px;
+  }
+
+  .responsive-font-example {
+      font-size: 1.2rem;
+      margin: 100px;
+  }
+
+  .tagline {
+      font-size: 1rem;
+      margin: 100px;
+  }
+}
+/* Default styles for the carousel */
+.carouselmain {
+  width: 100%;
+  text-align: center;
+}
+   .btn-upload{
+                   position: relative;
+                   padding: 11px 16px;
+                   font-size: 15px;
+                   line-height: 1.5;
+                   border-radius: 10px;
+                   background-color:black;
+                   color:white;
+                   border: 0;
+                   overflow: hidden;
+                   transition: 2s;
+               
+                  }
+                  .btn-upload input[type='file']{
+                   cursor:pointer;
+                   position: absolute;
+                   left: 0%;
+                   top: 0%;
+                 transform: scale(5);
+                 opacity: 0;
+               
+                  }
+                  input{
+                    text-align: center;   
+                }
+                  .btn-upload{
+                         position: absolute;
+                         right: 650px;
+                         top: 60px;
+                       }
+                       #txt{
+                        position: relative;
+                     top: 70px;
+
+                      } 
+                       .noofpagesbox{
+                        width: 100px;
+                        border-style: solid;
+                        border-color: black;
+                        border-radius: 10px;
+                        margin-left: 15px;
+                        position: relative;
+                        left: 500px;
+                        top: 45px;
+        
+                       }
+                       .numcopies{
+                        position: relative;
+                        left: 500px;
+                        
+                       }
+                       .nocopiesbox{
+                               border-color:black;
+                               border-radius: 10px;
+                           margin-left: 15px;
+                               width: 100px;
+                              position: relative;
+                             left: 500px;
+                             }
+                             .numpages{
+                              position: relative;
+                              left: 110px;
+                              top: 70px;
+                             }
+                     #footer,#contact-section{
+                        width: 80vw;
+                        padding: 1rem;
+                        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                        background-color: white;
+                        color: black;
+                        border-radius: 0.5rem;
+                        
+                      }
+                    
